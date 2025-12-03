@@ -9,14 +9,12 @@ from backend.qa_agent import answer_question
 from backend.quiz_agent import generate_quiz_from_query
 from backend.config import CHROMA_DIR
 
-# Basic page config
 st.set_page_config(
     page_title="InsightPDF – Agentic RAG",
     page_icon="📄",
     layout="wide",
 )
 
-# Coffee-brown textured style
 COFFEE_BROWN_BG = """
 <style>
 body {
@@ -54,7 +52,6 @@ section.main > div {
 
 st.markdown(COFFEE_BROWN_BG, unsafe_allow_html=True)
 
-# Simple session state
 if "file_path" not in st.session_state:
     st.session_state.file_path = None
 if "doc_type" not in st.session_state:
@@ -63,7 +60,7 @@ if "summary" not in st.session_state:
     st.session_state.summary = None
 
 def main():
-    st.title("📄 InsightPDF – Agentic RAG Document Analyzer")
+    st.title("InsightPDF – Agentic RAG Document Analyzer")
     st.caption("Upload a PDF → classify → summarize → chat & quiz, all powered by local RAG.")
 
     if st.session_state.file_path is None:
@@ -84,7 +81,6 @@ def render_upload_page():
                 file_path = save_uploaded_file(uploaded_file)
                 st.session_state.file_path = file_path
 
-                # Load and chunk
                 chunks = load_and_chunk_pdf(file_path)
 
                 # Build vector store (Chroma)
@@ -110,13 +106,13 @@ def render_summary_and_chat_page():
     col1, col2 = st.columns([2, 1])
 
     with col1:
-        st.markdown("### 📚 Document Summary")
+        st.markdown("### Document Summary")
         st.markdown(f"**Detected type:** {st.session_state.doc_type}")
         st.markdown("---")
         st.markdown(st.session_state.summary)
 
     with col2:
-        st.markdown("### 💬 Chat with your PDF")
+        st.markdown("### Chat with your PDF")
         if "chat_history" not in st.session_state:
             st.session_state.chat_history = []
 
@@ -145,7 +141,7 @@ def render_summary_and_chat_page():
                     st.session_state.chat_history.append(("assistant", answer_text))
 
     st.markdown("---")
-    if st.button("⬅️ Start over with a new PDF"):
+    if st.button("Start over with a new PDF"):
         st.session_state.file_path = None
         st.session_state.doc_type = None
         st.session_state.summary = None
