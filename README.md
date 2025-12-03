@@ -2,7 +2,7 @@
 
 InsightPDF is a local, agentic RAG-based web app that lets you upload any PDF, automatically classify it, generate a structured summary, chat with it, and even generate quizzes – all powered by open models and a vector database.
 
-- Frontend: Streamlit (coffee-brown themed UI)
+- Frontend: Streamlit
 - Backend: Python + LangChain-style agents
 - Vector DB: ChromaDB
 - Models: Local LLM via Ollama + HuggingFace embeddings
@@ -12,7 +12,7 @@ InsightPDF is a local, agentic RAG-based web app that lets you upload any PDF, a
 ## Features
 
 - **PDF Upload & Processing**
-  - Upload any PDF (including long docs ~400+ pages).
+  - Upload any PDF.
   - Text is extracted, chunked intelligently, and embedded into a local Chroma vector store.
 
 - **Document Type Classification**
@@ -158,3 +158,4 @@ Open that URL in your browser.
 
 
 ---
+
