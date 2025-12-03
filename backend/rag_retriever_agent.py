@@ -1,8 +1,8 @@
-from langchain_core.prompts import ChatPromptTemplate
-from .llm_provider import get_llm
-from .vector_store import load_raw_vector_store, load_summary_vector_store
-from langchain_core.documents import Document
 from typing import List, Tuple
+from langchain_core.prompts import ChatPromptTemplate
+from langchain_core.documents import Document
+from .llm_provider import get_llm
+from .vector_store import load_vector_store
 
 ROUTER_PROMPT = ChatPromptTemplate.from_messages(
     [
@@ -11,40 +11,35 @@ ROUTER_PROMPT = ChatPromptTemplate.from_messages(
             """
 You are a retrieval router agent.
 
-Decide which index is best for answering the user's question:
+For now there is only ONE index of raw chunks for the PDF,
+but you should still analyze the question for difficulty and specificity.
+In future, you might choose between RAW and SUMMARY indexes.
 
-- "RAW": use fine-grained raw chunks (good for specific details, quotes, formulas).
-- "SUMMARY": use section summaries only (good for high-level overviews, big-picture questions).
-- "BOTH": use both indexes and combine their context.
-
-Return EXACTLY one word: RAW, SUMMARY, or BOTH.
+For now, always answer with "RAW".
 """,
         ),
-        ("human", "Question:\n{question}\n\nYour choice (RAW, SUMMARY, or BOTH):"),
+        ("human", "Question:\n{question}\n\nYour choice (RAW):"),
     ]
 )
+
 def _route_index(question: str) -> str:
     llm = get_llm()
     chain = ROUTER_PROMPT | llm
-    choice = chain.invoke({"question": question}).strip().upper()
-    if choice not in {"RAW", "SUMMARY", "BOTH"}:
+    choice = str(chain.invoke({"question": question})).strip().upper()
+    # Since we only have one index, force RAW as a safe default.
+    if choice not in {"RAW"}:
         return "RAW"
     return choice
 
-def retrieve_context_agentic(query: str, k_raw: int = 20, k_summary: int = 10) -> List[Document]:
-    choice = _route_index(query)
-
-    docs: List[Document] = []
-    if choice in {"RAW", "BOTH"}:
-        raw_vs = load_raw_vector_store()
-        raw_retriever = raw_vs.as_retriever(search_kwargs={"k": k_raw})
-        docs.extend(raw_retriever.invoke(query))
-
-    if choice in {"SUMMARY", "BOTH"}:
-        sum_vs = load_summary_vector_store()
-        sum_retriever = sum_vs.as_retriever(search_kwargs={"k": k_summary})
-        docs.extend(sum_retriever.invoke(query))
-
+def retrieve_context_agentic(query: str, k: int = 25) -> List[Document]:
+    """
+    Agentic-style retrieval wrapper, currently over a single raw index.
+    Router is kept for future extension, but always ends up using RAW.
+    """
+    _ = _route_index(query)  # kept for extensibility
+    vectorstore = load_vector_store()
+    retriever = vectorstore.as_retriever(search_kwargs={"k": k})
+    docs = retriever.invoke(query)
     return docs
 
 def answer_with_rag(query: str) -> Tuple[str, List[Document]]:
@@ -54,7 +49,7 @@ def answer_with_rag(query: str) -> Tuple[str, List[Document]]:
 
     RAG_SYSTEM_PROMPT = """
 You are a helpful assistant that answers questions about a specific PDF.
-Use ONLY the provided context (which may come from raw text or section summaries).
+Use ONLY the provided context (from the indexed chunks).
 Combine information from all chunks. If the answer is not in the context, say you don't know.
 """
 
