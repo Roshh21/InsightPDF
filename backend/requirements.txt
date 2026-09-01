@@ -3,6 +3,8 @@ uvicorn[standard]>=0.30
 python-multipart>=0.0.9
 pydantic>=2.7
 pydantic-settings>=2.3
+anthropic
+openai
 psycopg2-binary
 sqlalchemy>=2.0
 
