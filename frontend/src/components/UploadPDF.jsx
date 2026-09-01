@@ -120,7 +120,7 @@ const UploadPDF = ({ onUploadComplete }) => {
             <button
               className="btn"
               type="button"
-              onClick={handleFileUpload}
+              onClick={handleUpload}
               disabled={!selectedFile || uploading}
               style={{
                 opacity: !selectedFile ? 0.6 : 1,

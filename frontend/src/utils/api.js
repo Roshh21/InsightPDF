@@ -1,4 +1,5 @@
-const BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:8000";
+const BASE_URL =
+  process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
 export async function uploadPDF(file) {
   const formData = new FormData();
@@ -26,6 +27,7 @@ export async function askQuestion(docId, question) {
   if (!res.ok) {
     throw new Error("Query failed");
   }
+
   return res.json(); // { text }
 }
 
@@ -33,11 +35,15 @@ export async function generateQuiz(docId, numQuestions = 5) {
   const res = await fetch(`${BASE_URL}/quiz`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ doc_id: docId, num_questions: numQuestions }),
+    body: JSON.stringify({
+      doc_id: docId,
+      num_questions: numQuestions,
+    }),
   });
 
   if (!res.ok) {
     throw new Error("Quiz failed");
   }
+
   return res.json(); // { questions: [...] }
 }

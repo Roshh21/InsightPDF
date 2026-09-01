@@ -1,14 +1,18 @@
+"use client";
+
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const Header = () => {
-  const location = useLocation();
+  const pathname = usePathname();
 
   return (
     <header className="header-root">
       <div className="header-inner">
-        <Link to="/" className="brand">
+        <Link href="/" className="brand">
           <div className="brand-mark">IP</div>
+
           <div className="brand-text">
             <span className="brand-title">InsightPDF</span>
             <span className="brand-subtitle">
@@ -19,17 +23,20 @@ const Header = () => {
 
         <nav className="nav-links">
           <Link
-            to="/"
+            href="/"
             className={
-              location.pathname === "/" ? "nav-link nav-link-active" : "nav-link"
+              pathname === "/"
+                ? "nav-link nav-link-active"
+                : "nav-link"
             }
           >
             Home
           </Link>
+
           <Link
-            to="/analyzer"
+            href="/Analyzer"
             className={
-              location.pathname === "/analyzer"
+              pathname === "/Analyzer"
                 ? "nav-link nav-link-active"
                 : "nav-link"
             }

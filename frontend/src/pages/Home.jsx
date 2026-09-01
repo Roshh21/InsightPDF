@@ -1,44 +1,52 @@
+"use client";
+
 import React from "react";
-import { useNavigate } from "react-router-dom";
-import UploadPDF from "../components/UploadPDF";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
-const Home = () => {
-  const navigate = useNavigate();
-
-  const handleUploadComplete = () => {
-    navigate("/analyzer");
-  };
+const Header = () => {
+  const pathname = usePathname();
 
   return (
-    <div className="stack-v">
-      <section className="card card-soft">
-        <div className="stack-v">
-          <h1 style={{ margin: 0, fontSize: "1.6rem" }}>
-            Welcome to InsightPDF
-          </h1>
-          <p
-            style={{
-              margin: "6px 0 0",
-              fontSize: "0.95rem",
-              color: "var(--text-muted)",
-            }}
-          >
-            A cozy, intelligent agentic RAG space where your PDFs become
-            summaries, chats, and quizzes in a warm dark-brown theme.
-          </p>
+    <header className="header-root">
+      <div className="header-inner">
+        <Link href="/" className="brand">
+          <div className="brand-mark">IP</div>
 
-          <div className="stack-h" style={{ flexWrap: "wrap" }}>
-            <span className="tag">Smart classification</span>
-            <span className="tag">Structured summaries</span>
-            <span className="tag">Document-grounded Q&A</span>
-            <span className="tag">Quiz generator</span>
+          <div className="brand-text">
+            <span className="brand-title">InsightPDF</span>
+            <span className="brand-subtitle">
+              Intelligent agentic document analyzer
+            </span>
           </div>
-        </div>
-      </section>
+        </Link>
 
-      <UploadPDF onUploadComplete={handleUploadComplete} />
-    </div>
+        <nav className="nav-links">
+          <Link
+            href="/"
+            className={
+              pathname === "/"
+                ? "nav-link nav-link-active"
+                : "nav-link"
+            }
+          >
+            Home
+          </Link>
+
+          <Link
+            href="/Analyzer"
+            className={
+              pathname === "/Analyzer"
+                ? "nav-link nav-link-active"
+                : "nav-link"
+            }
+          >
+            Analyzer
+          </Link>
+        </nav>
+      </div>
+    </header>
   );
 };
 
-export default Home;
+export default Header;
