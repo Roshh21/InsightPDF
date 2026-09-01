@@ -1,0 +1,40 @@
+networks:
+  insightpdf:
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: insightpdf-postgres
+    environment:
+      POSTGRES_USER: insightpdf
+      POSTGRES_PASSWORD: insightpdf
+      POSTGRES_DB: insightpdf
+    ports:
+      - "5432:5432"
+    volumes:
+      - insightpdf_pg_data:/var/lib/postgresql/data
+    networks:
+      - insightpdf
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U insightpdf"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  # Optional: only needed if VECTOR_STORE=qdrant and you want a local
+  # server instead of the embedded on-disk mode (which needs no service at
+  # all). Start with: docker compose --profile qdrant up
+  qdrant:
+    image: qdrant/qdrant:latest
+    container_name: insightpdf-qdrant
+    profiles: ["qdrant"]
+    ports:
+      - "6333:6333"
+    volumes:
+      - insightpdf_qdrant_data:/qdrant/storage
+    networks:
+      - insightpdf
+
+volumes:
+  insightpdf_pg_data:
+  insightpdf_qdrant_data:

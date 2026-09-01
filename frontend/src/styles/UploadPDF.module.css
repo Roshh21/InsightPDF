@@ -1,0 +1,79 @@
+.upload-root {
+    margin-top: 12px;
+  }
+  
+  .upload-dropzone {
+    border-radius: 20px;
+    border: 1.5px dashed rgba(244, 212, 160, 0.5);
+    background: radial-gradient(circle at 0 0, #251811, #17100c);
+    transition:
+      border-color 0.18s ease,
+      background 0.18s ease,
+      transform 0.1s ease-out,
+      box-shadow 0.18s ease;
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.75);
+  }
+  
+  .upload-dropzone:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 18px 36px rgba(0, 0, 0, 0.8);
+  }
+  
+  .upload-dropzone-active {
+    border-color: var(--accent-strong);
+    background: radial-gradient(circle at 0 0, #2f1e14, #140e0a);
+  }
+  
+  .upload-inner {
+    padding: 26px 20px 22px;
+  }
+  
+  .upload-title {
+    margin: 0;
+    font-size: 1.2rem;
+  }
+  
+  .upload-subtitle {
+    margin: 6px 0 16px;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    max-width: 520px;
+  }
+  
+  .upload-controls {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+  }
+  
+  .upload-file-info {
+    margin-top: 4px;
+    font-size: 0.85rem;
+  }
+  
+  .upload-file-name {
+    color: var(--accent);
+  }
+  
+  .upload-file-placeholder {
+    color: var(--text-muted);
+  }
+  
+  .upload-action-row {
+    margin-top: 14px;
+  }
+  
+  .upload-hints {
+    margin-top: 16px;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  
+  .upload-error {
+    margin-top: 10px;
+    color: var(--danger);
+    font-size: 0.85rem;
+  }
+  

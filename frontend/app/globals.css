@@ -1,0 +1,155 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+
+  --color-paper: 246 245 240;
+  --color-paper-soft: 251 250 247;
+  --color-paper-dim: 238 235 226;
+
+  --color-ink: 24 27 31;
+  --color-ink-soft: 86 94 103;
+  --color-ink-faint: 138 144 153;
+
+  --color-cobalt: 44 74 124;
+  --color-cobalt-dark: 30 52 89;
+  --color-cobalt-soft: 231 236 244;
+
+  --color-amber: 189 138 52;
+  --color-amber-dark: 143 106 40;
+  --color-amber-soft: 245 235 216;
+
+  --color-line: 222 218 205;
+  --color-line-soft: 234 231 220;
+
+  --color-success: 59 122 87;
+  --color-success-soft: 228 239 232;
+  --color-danger: 178 74 59;
+  --color-danger-soft: 245 229 225;
+}
+
+.dark {
+  color-scheme: dark;
+
+  --color-paper: 20 22 26;
+  --color-paper-soft: 27 30 35;
+  --color-paper-dim: 35 38 44;
+
+  --color-ink: 236 234 227;
+  --color-ink-soft: 168 173 181;
+  --color-ink-faint: 118 124 132;
+
+  --color-cobalt: 110 147 214;
+  --color-cobalt-dark: 143 172 230;
+  --color-cobalt-soft: 34 49 77;
+
+  --color-amber: 217 168 87;
+  --color-amber-dark: 240 192 119;
+  --color-amber-soft: 58 46 23;
+
+  --color-line: 47 51 59;
+  --color-line-soft: 38 41 47;
+
+  --color-success: 111 190 143;
+  --color-success-soft: 28 51 39;
+  --color-danger: 224 135 118;
+  --color-danger-soft: 58 32 24;
+}
+
+html,
+body {
+  background-color: rgb(var(--color-paper));
+  color: rgb(var(--color-ink));
+}
+
+body {
+  background-image: radial-gradient(circle at 1px 1px, rgb(var(--color-ink) / 0.045) 1px, transparent 0);
+  background-size: 22px 22px;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+* {
+  border-color: rgb(var(--color-line));
+}
+
+::selection {
+  background: rgb(var(--color-amber-soft));
+  color: rgb(var(--color-ink));
+}
+
+/* Thin, quiet scrollbars that match the paper/ink palette in both themes */
+::-webkit-scrollbar {
+  width: 9px;
+  height: 9px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgb(var(--color-line));
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(var(--color-ink-faint));
+  background-clip: content-box;
+}
+
+@layer components {
+  /* The signature element: a citation reference styled like a library
+     catalog tab -- a small notch on the left edge, monospace source
+     reference, warm "highlighter" tint. Used everywhere a claim is
+     grounded in a source document. Theme-aware via the amber-* tokens. */
+  .citation-tab {
+    @apply relative inline-flex items-center gap-1.5 rounded-r-[4px] rounded-l-[2px] bg-amber-soft
+      pl-2.5 pr-2 py-[3px] font-mono text-[11px] leading-none text-amber-dark;
+    border-left: 2px solid rgb(var(--color-amber));
+  }
+  .citation-tab.unsupported {
+    @apply bg-line-soft text-ink-faint;
+    border-left-color: rgb(var(--color-ink-faint));
+  }
+
+  .card {
+    @apply rounded-md border border-line bg-paper-soft shadow-card;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-[5px] bg-cobalt px-3.5 py-2 text-sm font-medium text-paper-soft
+      transition-colors hover:bg-cobalt-dark disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-[5px] border border-line bg-paper-soft px-3.5 py-2 text-sm font-medium text-ink
+      transition-colors hover:bg-paper-dim disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-1.5 rounded-[5px] px-2.5 py-1.5 text-sm font-medium text-ink-soft
+      transition-colors hover:bg-paper-dim hover:text-ink;
+  }
+
+  .field {
+    @apply w-full rounded-[5px] border border-line bg-paper-soft px-3 py-2 text-sm text-ink placeholder:text-ink-faint
+      focus:border-cobalt focus:outline-none focus:ring-1 focus:ring-cobalt;
+  }
+
+  .badge {
+    @apply inline-flex items-center gap-1 rounded-full border px-2 py-0.5 text-[11px] font-medium uppercase tracking-wide;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(3px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-fade-in {
+  animation: fade-in 0.25s ease-out;
+}

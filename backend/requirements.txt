@@ -1,0 +1,33 @@
+fastapi>=0.115,<1.0
+uvicorn[standard]>=0.30
+python-multipart>=0.0.9
+pydantic>=2.7
+pydantic-settings>=2.3
+
+sqlalchemy>=2.0
+psycopg[binary]>=3.1  # PostgreSQL driver (SQLite also works out of the box for local trials)
+
+langgraph>=0.2,<2.0
+
+# LLM providers. `openai` is the ONE client library used for every free
+# provider (Groq, Gemini, OpenRouter) since they all speak the OpenAI
+# chat-completions wire format -- see app/llm/openai_compatible_provider.py.
+# `anthropic` is only needed if you optionally point a provider slot at
+# Anthropic's paid API; it is never required.
+openai>=1.40
+anthropic>=0.34
+httpx>=0.27
+
+pypdf>=4.2
+pdfplumber>=0.11
+
+# Embeddings: local, free, PyTorch-backed sentence-transformers. No
+# TensorFlow dependency -- `sentence-transformers` selects the PyTorch
+# backend automatically when torch is present, which is all that's pinned
+# here.
+torch>=2.2
+sentence-transformers>=3.0
+chromadb>=0.5
+qdrant-client>=1.10
+
+python-dotenv>=1.0

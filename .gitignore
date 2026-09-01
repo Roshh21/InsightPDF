@@ -1,0 +1,37 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+*.egg-info/
+
+# Backend runtime data (uploads, local vector store, sqlite trial db)
+backend/data/uploads/*
+!backend/data/uploads/.gitkeep
+backend/data/chroma/*
+!backend/data/chroma/.gitkeep
+backend/data/qdrant/*
+backend/*.db
+backend/*.db-wal
+backend/*.db-shm
+
+# Env files (never commit secrets)
+.env
+.env.local
+*.env.local
+
+data/chroma/
+data/uploads/
+backend/data/chroma/
+backend/data/uploads/
+
+# Frontend
+frontend/node_modules/
+frontend/.next/
+frontend/*.tsbuildinfo
+frontend/next-env.d.ts
+
+# OS / editor
+.DS_Store
+.vscode/
+.idea/
