@@ -33,7 +33,7 @@ export default function ModelsPage() {
   }, [load]);
 
   return (
-    <div className="mx-auto max-w-4xl px-8 py-10">
+    <div className="mx-auto max-w-4xl px-4 py-8 sm:px-6 md:px-8 md:py-10">
       <PageHeader
         eyebrow="Free-Provider LLM Gateway"
         title="Model Status"

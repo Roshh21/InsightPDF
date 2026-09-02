@@ -74,17 +74,17 @@ export function PageHeader({
   actions?: React.ReactNode;
 }) {
   return (
-    <div className="mb-6 flex items-start justify-between gap-4">
-      <div>
+    <div className="mb-6 flex flex-col flex-wrap items-start justify-between gap-4 sm:flex-row sm:items-start">
+      <div className="min-w-0">
         {eyebrow && (
           <div className="mb-1 font-mono text-[11px] font-medium uppercase tracking-wider text-amber-dark">
             {eyebrow}
           </div>
         )}
-        <h1 className="font-serif text-[24px] font-semibold leading-tight text-ink">{title}</h1>
+        <h1 className="break-words font-serif text-[24px] font-semibold leading-tight text-ink">{title}</h1>
         {description && <p className="mt-1.5 max-w-2xl text-[13.5px] text-ink-soft">{description}</p>}
       </div>
-      {actions && <div className="flex shrink-0 items-center gap-2">{actions}</div>}
+      {actions && <div className="flex shrink-0 flex-wrap items-center gap-2">{actions}</div>}
     </div>
   );
 }

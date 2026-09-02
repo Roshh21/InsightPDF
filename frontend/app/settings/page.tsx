@@ -17,7 +17,7 @@ export default function SettingsPage() {
   }, []);
 
   return (
-    <div className="mx-auto max-w-3xl px-8 py-10">
+    <div className="mx-auto max-w-3xl px-4 py-8 sm:px-6 md:px-8 md:py-10">
       <PageHeader
         eyebrow="Configuration"
         title="Settings"
@@ -75,9 +75,9 @@ function Section({ title, children }: { title: string; children: React.ReactNode
 
 function Row({ label, value, mono }: { label: string; value: string; mono?: boolean }) {
   return (
-    <div className="flex items-center justify-between text-[13px]">
+    <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-0.5 text-[13px]">
       <dt className="text-ink-soft">{label}</dt>
-      <dd className={mono ? "font-mono text-[12px] text-ink" : "font-medium text-ink"}>{value}</dd>
+      <dd className={mono ? "break-all text-right font-mono text-[12px] text-ink" : "text-right font-medium text-ink"}>{value}</dd>
     </div>
   );
 }

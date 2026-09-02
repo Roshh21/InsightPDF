@@ -73,7 +73,7 @@ export default function WorkspaceChatPage() {
   // Hooks have already been called, so this conditional return is safe.
   if (!workspaceId) {
     return (
-      <div className="mx-auto max-w-6xl px-8 py-10">
+      <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 md:px-8 md:py-10">
         <div className="card p-6">
           <p className="text-[12.5px] text-ink-faint">
             Loading workspace...
@@ -84,8 +84,8 @@ export default function WorkspaceChatPage() {
   }
 
   return (
-    <div className="mx-auto flex max-w-6xl gap-8 px-8 py-10">
-      <aside className="w-[260px] shrink-0">
+    <div className="mx-auto flex max-w-6xl flex-col gap-6 px-4 py-8 sm:px-6 md:flex-row md:gap-8 md:px-8 md:py-10">
+      <aside className="w-full shrink-0 md:w-[220px] lg:w-[260px]">
         <PageHeader
           title="Chat"
           description="Ask about one document, several, or leave none selected to search the whole workspace."

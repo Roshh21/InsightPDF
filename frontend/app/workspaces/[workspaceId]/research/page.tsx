@@ -115,7 +115,7 @@ export default function ResearchPage() {
 
   if (!workspaceId) {
     return (
-      <div className="mx-auto max-w-4xl px-8 py-10">
+      <div className="mx-auto max-w-4xl px-4 py-8 sm:px-6 md:px-8 md:py-10">
         <div className="flex items-center gap-2 py-10 text-ink-soft">
           <Spinner size={16} />
           Loading workspace…
@@ -125,7 +125,7 @@ export default function ResearchPage() {
   }
 
   return (
-    <div className="mx-auto max-w-4xl px-8 py-10">
+    <div className="mx-auto max-w-4xl px-4 py-8 sm:px-6 md:px-8 md:py-10">
       <PageHeader
         eyebrow="Research paper mode"
         title="Web Research"

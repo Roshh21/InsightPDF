@@ -21,7 +21,7 @@ export function CitationTab({ citation }: { citation: Citation }) {
         <span className="opacity-70">· p.{citation.page}</span>
       </button>
       {open && (
-        <span className="absolute left-0 top-full z-20 mt-1.5 block w-72 rounded-md border border-line bg-paper-soft p-3 text-left text-[12.5px] leading-relaxed text-ink shadow-pop animate-fade-in">
+        <span className="absolute left-0 top-full z-20 mt-1.5 block w-72 max-w-[calc(100vw-2rem)] rounded-md border border-line bg-paper-soft p-3 text-left text-[12.5px] leading-relaxed text-ink shadow-pop animate-fade-in">
           <span className="mb-1 flex items-center justify-between font-mono text-[10.5px] text-ink-faint">
             <span>
               {citation.document_name} · page {citation.page}

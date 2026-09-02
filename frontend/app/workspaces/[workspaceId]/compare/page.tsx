@@ -107,7 +107,7 @@ export default function ComparePage() {
   // has not yet been resolved without passing undefined to child components.
   if (!workspaceId) {
     return (
-      <div className="mx-auto max-w-6xl px-8 py-10">
+      <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 md:px-8 md:py-10">
         <div className="card p-6">
           <p className="text-[12.5px] text-ink-faint">
             Loading workspace...
@@ -118,8 +118,8 @@ export default function ComparePage() {
   }
 
   return (
-    <div className="mx-auto flex max-w-6xl gap-8 px-8 py-10">
-      <aside className="w-[280px] shrink-0">
+    <div className="mx-auto flex max-w-6xl flex-col gap-6 px-4 py-8 sm:px-6 md:flex-row md:gap-8 md:px-8 md:py-10">
+      <aside className="w-full shrink-0 md:w-[240px] lg:w-[280px]">
         <PageHeader
           title="Compare"
           description="Select two or more documents to run a structured, cited comparison."

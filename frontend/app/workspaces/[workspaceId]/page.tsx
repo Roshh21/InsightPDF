@@ -151,7 +151,7 @@ export default function WorkspaceOverviewPage() {
 
   if (!workspaceId) {
     return (
-      <div className="mx-auto max-w-6xl px-8 py-10">
+      <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 md:px-8 md:py-10">
         <div className="rounded-[5px] border border-danger/30 bg-danger-soft px-3 py-2 text-[13px] text-danger">
           Invalid workspace URL.
         </div>
@@ -161,7 +161,7 @@ export default function WorkspaceOverviewPage() {
 
   if (!workspace || !documents) {
     return (
-      <div className="mx-auto max-w-6xl px-8 py-10">
+      <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 md:px-8 md:py-10">
         {error ? (
           <div className="rounded-[5px] border border-danger/30 bg-danger-soft px-3 py-2 text-[13px] text-danger">
             {error}
@@ -178,7 +178,7 @@ export default function WorkspaceOverviewPage() {
   const statusCounts = workspace.stats.by_status;
 
   return (
-    <div className="mx-auto max-w-6xl px-8 py-10">
+    <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 md:px-8 md:py-10">
       <PageHeader
         eyebrow={`${workspace.stats.total_documents} document${
           workspace.stats.total_documents === 1 ? "" : "s"

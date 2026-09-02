@@ -49,7 +49,7 @@ export default function DashboardPage() {
   }
 
   return (
-    <div className="mx-auto max-w-5xl px-8 py-10">
+    <div className="mx-auto max-w-5xl px-4 py-8 sm:px-6 md:px-8 md:py-10">
       <PageHeader
         eyebrow="Document Intelligence"
         title="Workspaces"
@@ -118,7 +118,7 @@ export default function DashboardPage() {
               <div className="flex h-8 w-8 items-center justify-center rounded-[5px] bg-cobalt-soft">
                 <FolderKanban size={15} className="text-cobalt" />
               </div>
-              <div className="font-serif text-[15.5px] font-semibold text-ink group-hover:text-cobalt">{ws.name}</div>
+              <div className="truncate font-serif text-[15.5px] font-semibold text-ink group-hover:text-cobalt" title={ws.name}>{ws.name}</div>
               {ws.description && <p className="line-clamp-2 text-[12.5px] text-ink-soft">{ws.description}</p>}
               <div className="mt-1 font-mono text-[11px] text-ink-faint">Created {formatDate(ws.created_at)}</div>
               <button

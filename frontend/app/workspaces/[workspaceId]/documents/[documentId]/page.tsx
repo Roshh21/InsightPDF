@@ -197,7 +197,7 @@ export default function DocumentPage() {
    */
   if (!workspaceId || !documentId) {
     return (
-      <div className="mx-auto max-w-6xl px-8 py-10">
+      <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 md:px-8 md:py-10">
         <div className="flex items-center gap-2 py-10 text-ink-soft">
           <Spinner size={16} />
           Loading document…
@@ -208,7 +208,7 @@ export default function DocumentPage() {
 
   if (!document) {
     return (
-      <div className="mx-auto max-w-6xl px-8 py-10">
+      <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 md:px-8 md:py-10">
         {error ? (
           <div className="rounded-[5px] border border-danger/30 bg-danger-soft px-3 py-2 text-[13px] text-danger">
             {error}
@@ -231,8 +231,8 @@ export default function DocumentPage() {
   const notReady = document.status !== "READY";
 
   return (
-    <div className="flex">
-      <div className="min-w-0 flex-1 px-8 py-10">
+    <div className="flex flex-col lg:flex-row">
+      <div className="min-w-0 flex-1 px-4 py-8 sm:px-6 md:px-8 md:py-10">
         <Link
           href={`/workspaces/${workspaceId}`}
           className="mb-4 inline-flex items-center gap-1.5 text-[12.5px] text-ink-soft hover:text-ink"
@@ -242,7 +242,7 @@ export default function DocumentPage() {
         </Link>
 
         <div className="mb-6 flex items-start justify-between gap-4">
-          <div>
+          <div className="min-w-0">
             <div className="mb-1 flex items-center gap-2">
               <span className="font-mono text-[11px] uppercase tracking-wider text-amber-dark">
                 {docTypeLabel(document.document_type)}
@@ -251,7 +251,7 @@ export default function DocumentPage() {
               <StatusBadge status={document.status} />
             </div>
 
-            <h1 className="font-serif text-[24px] font-semibold leading-tight text-ink">
+            <h1 className="break-words font-serif text-[24px] font-semibold leading-tight text-ink">
               {profile?.title || document.original_filename}
             </h1>
 
@@ -442,7 +442,7 @@ export default function DocumentPage() {
       </div>
 
       {!notReady && (
-        <aside className="hidden w-[300px] shrink-0 border-l border-line px-5 py-10 lg:block">
+        <aside className="w-full shrink-0 border-t border-line px-4 py-8 sm:px-6 md:px-8 lg:w-[300px] lg:border-l lg:border-t-0 lg:px-5 lg:py-10">
           <div className="mb-3 font-serif text-[14px] font-semibold text-ink">
             Tools
           </div>
